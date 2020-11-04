@@ -6,6 +6,7 @@ final _icons = <String, IconData>{
   'add_alert': Icons.add_alert,
   'accessibility': Icons.accessibility_new,
   'folder_open': Icons.folder_open,
+  'donut_large': Icons.donut_large
 };
 
 //Funcion que recibe el nombre del icono y lo asigna a _icons

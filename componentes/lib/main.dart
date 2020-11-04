@@ -1,5 +1,5 @@
 import 'package:componentes/src/pages/alert_page.dart';
-import 'package:componentes/src/pages/card_page.dart';
+
 import 'package:componentes/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 

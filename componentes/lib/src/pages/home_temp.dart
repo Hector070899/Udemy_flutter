@@ -17,28 +17,6 @@ class HomePageTemp extends StatelessWidget {
     );
   }
 
-  List<Widget> _crearItems() {
-    //Lista dinamica
-    List<Widget> lista = List<Widget>();
-    //Tipo de dato, options dentro de la lista opciones
-    for (String opt in opciones) {
-      //Widget temporal que almacena listtile
-      final tempWidget = ListTile(
-        //Cada titulo muestra las opciones provenientes de opciones
-        //a traves de opt
-        title: Text(opt),
-      );
-      //Anade las opt desde tempWidget hacia lista,
-      //operador cascade
-      lista..add(tempWidget)..add(Divider());
-      //Es igual a tener
-      //lista.add(tempWidget);
-      //lista.add(Divider());
-    }
-    //Devuelve la lista que muestra las opciones
-    return lista;
-  }
-
   List<Widget> _crearItemsCorta() {
     //Regresa una nueva lista iterable
     //donde los elementos pasan por una funcion definida

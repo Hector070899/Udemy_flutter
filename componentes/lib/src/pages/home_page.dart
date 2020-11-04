@@ -1,4 +1,3 @@
-import 'package:componentes/src/pages/alert_page.dart';
 import 'package:componentes/src/providers/menu_provider.dart';
 import 'package:componentes/src/utils/iconos_string_util.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +23,7 @@ class HomePage extends StatelessWidget {
       //Enlazado al future que estamos esperando
       future: menuProvider.cargarData(),
       //Opcional, informacion por default mientras no se ha resuelto el future
+      //Y que es recibida por snapshot.data
       initialData: [],
       //Permite redibujar sobre la pantalla
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
