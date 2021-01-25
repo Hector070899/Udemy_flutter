@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 //Clase que contiene todas las peliculas
 // que se estan manejando
 class Peliculas {
-  //lista de tipo pelicula que va a contnner todas las pelicuals mapeadas
+  //lista de tipo pelicula que va a contener todas las peliculas mapeadas
   //por el for
   List<Pelicula> items = List();
   Peliculas(this.items);
   //Recibe el mapa de todas las peliculas y las transforma a items.
+  //Cada item es una pelicula
   Peliculas.fromJsonList(List<dynamic> jsonList) {
+    //Si el json list esta vacio no funciona
     if (jsonList == null) return;
     for (var item in jsonList) {
       //Se manda todo el item al constructor JsonMap
       final pelicula = Pelicula.fromJsonMap(item);
-      //La nueva instancia de pelicula se almacena aca se almacena aca
+      //La nueva instancia de pelicula se almacena aca
       items.add(pelicula);
     }
   }
@@ -35,6 +37,7 @@ class Pelicula {
   int id;
   bool video;
 
+  //Constructor
   Pelicula({
     this.voteAverage,
     this.popularity,
@@ -69,6 +72,14 @@ class Pelicula {
     posterPath = json['poster_path'];
     id = json['id'];
     video = json['video'];
+  }
+
+  getPosterImg() {
+    if (posterPath == null) {
+      return 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-illustration-132483587.jpg';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    }
   }
 }
 

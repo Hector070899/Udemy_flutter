@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:peliculas/src/Widgets/card_swiper_widget.dart';
+import 'package:peliculas/src/Widgets/movie_horizontal.dart';
 import 'package:peliculas/src/providers/peliculas_provider.dart';
 
 class HomePage extends StatelessWidget {
+  final peliculasProvider = PeliculasProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,18 +19,68 @@ class HomePage extends StatelessWidget {
       //Safe area es un widget que coloca las cosas en lugares donde se pueden colocar
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             _swipearTarjetas(),
+            _footer(context),
           ],
         ),
       ),
     );
   }
 
+  //metodo que regresa un widget
   Widget _swipearTarjetas() {
-    final peliculasProvider = PeliculasProvider();
-    //Implementacion de metodo getEnCines
-    peliculasProvider.getEnCines();
-    return CardSwiper(peliculas: [1, 2, 3, 4, 5]);
+    return FutureBuilder(
+      //Recibe como future el metodo de Peliculas provider
+      future: peliculasProvider.getEnCines(),
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if (snapshot.hasData) {
+          //Esto solo se debe retornar cuando hay data en el snapshot
+          return CardSwiper(peliculas: snapshot.data);
+        } else {
+          return Container(
+            height: 400.0,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
+    );
+
+    // //Implementacion de metodo getEnCines
+    //
+    //
+  }
+
+  Widget _footer(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text('Populares',
+                  style: Theme.of(context).textTheme.subtitle1)),
+          SizedBox(
+            height: 5.0,
+          ),
+          FutureBuilder(
+            future: peliculasProvider.getPopulares(),
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              //Si el snapshot tiene datos se ejecuta moviehorizontal
+              if (snapshot.hasData) {
+                //recibe como parametro la lista de peliculas a mostrar
+                return MovieHorizontal(peliculas: snapshot.data);
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

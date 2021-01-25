@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
       title: 'Peliculas',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
+      //mapa de rutas
+      //El '/' apunta al BuildContext que retorna HomePage()
       routes: {
         '/': (BuildContext context) => HomePage(),
       },

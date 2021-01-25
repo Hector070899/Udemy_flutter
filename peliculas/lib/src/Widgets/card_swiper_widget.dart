@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:peliculas/src/models/pelicula_model.dart';
 
 class CardSwiper extends StatelessWidget {
-  final List<dynamic> peliculas;
-  //El required indica que se tiene que mandar la lista
+  final List<Pelicula> peliculas;
+  //El required indica que se tiene que mandar la lista de tarjetas(peliculas)
   CardSwiper({@required this.peliculas});
 
   @override
@@ -12,24 +13,22 @@ class CardSwiper extends StatelessWidget {
     final _screenSize = MediaQuery.of(context).size;
 
     return Container(
-      padding: EdgeInsets.only(top: 10.0),
       child: Swiper(
         layout: SwiperLayout.STACK,
         //Definimos heigh y width a traves de screensize y los porcentajes
-        itemWidth: _screenSize.width * 0.7,
-        itemHeight: _screenSize.width * 0.5,
+        itemWidth: _screenSize.width * 0.5,
+        itemHeight: _screenSize.width * 0.7,
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: Image.network(
-              'https://www.agora-gallery.com/advice/wp-content/uploads/2015/10/image-placeholder.png',
+            child: FadeInImage(
+              image: NetworkImage(peliculas[index].getPosterImg()),
+              placeholder: AssetImage('assets/img/loading.gif'),
               fit: BoxFit.cover,
             ),
           );
         },
         itemCount: peliculas.length,
-        //pagination: SwiperPagination(),
-        //control: SwiperControl(),
       ),
     );
   }
