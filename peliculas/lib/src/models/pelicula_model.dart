@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 //Clase que contiene todas las peliculas
 // que se estan manejando
 class Peliculas {
@@ -79,6 +77,14 @@ class Pelicula {
       return 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-illustration-132483587.jpg';
     } else {
       return 'https://image.tmdb.org/t/p/w500/$posterPath';
+    }
+  }
+
+  getBackdropImg() {
+    if (posterPath == null) {
+      return 'https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-illustration-132483587.jpg';
+    } else {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
     }
   }
 }
