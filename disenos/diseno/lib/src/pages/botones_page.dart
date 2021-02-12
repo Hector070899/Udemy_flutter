@@ -1,10 +1,11 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:diseno/widgets/bnb.dart';
 import 'package:flutter/material.dart';
 
 class BotonesPage extends StatelessWidget {
-  const BotonesPage({Key key}) : super(key: key);
+  final navigationBar = BNB();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class BotonesPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: _bottomNavigatioBar(context),
+      bottomNavigationBar: navigationBar,
     );
   }
 
@@ -104,41 +105,50 @@ class BotonesPage extends StatelessWidget {
     );
   }
 
-  Widget _bottomNavigatioBar(BuildContext context) {
-    return Theme(
-        //A traves del theme, logramos cambiar el fondo del bottomNavigationbar sin cambiar el tema de
-        //toda la app
-        data: Theme.of(context).copyWith(
-            canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
-            primaryColor: Colors.pinkAccent,
-            //De esta manera se cambia el color de los items no usados
-            textTheme: Theme.of(context)
-                .textTheme
-                .copyWith(caption: TextStyle(color: Colors.grey))),
-        child: BottomNavigationBar(items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.calendar_today,
-              size: 30.0,
-            ),
-            title: Container(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bubble_chart,
-              size: 30.0,
-            ),
-            title: Container(),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.supervised_user_circle,
-              size: 30.0,
-            ),
-            title: Container(),
-          )
-        ]));
-  }
+  // Widget _bottomNavigatioBar(BuildContext context) {
+  //   return Theme(
+  //       //A traves del theme, logramos cambiar el fondo del bottomNavigationbar sin cambiar el tema de
+  //       //toda la app
+  //       data: Theme.of(context).copyWith(
+  //           canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
+  //           primaryColor: Colors.pinkAccent,
+  //           //De esta manera se cambia el color de los items no usados
+  //           textTheme: Theme.of(context)
+  //               .textTheme
+  //               .copyWith(caption: TextStyle(color: Colors.grey))),
+  //       child: BottomNavigationBar(items: [
+  //         BottomNavigationBarItem(
+  //           icon: GestureDetector(
+  //             onTap: () => Navigator.pushNamed(context, 'scroll'),
+  //             child: Icon(
+  //               Icons.calendar_today,
+  //               size: 30.0,
+  //             ),
+  //           ),
+  //           title: Container(),
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: GestureDetector(
+  //             onTap: () => Navigator.pushNamed(context, 'botones'),
+  //             child: Icon(
+  //               Icons.bubble_chart,
+  //               size: 30.0,
+  //             ),
+  //           ),
+  //           title: Container(),
+  //         ),
+  //         BottomNavigationBarItem(
+  //           icon: GestureDetector(
+  //             onTap: () => Navigator.pushNamed(context, 'basico'),
+  //             child: Icon(
+  //               Icons.supervised_user_circle,
+  //               size: 30.0,
+  //             ),
+  //           ),
+  //           title: Container(),
+  //         )
+  //       ]));
+  // }
 
   Widget _botonesRedondeados() {
     //Contenido de children van a ser las columnas

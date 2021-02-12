@@ -1,27 +1,31 @@
+import 'package:diseno/widgets/bnb.dart';
 import 'package:flutter/material.dart';
 
 class BasicoPage extends StatelessWidget {
   final estiloTitulo = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
   final estiloSubTitulo = TextStyle(fontSize: 18.0, color: Colors.grey);
+  final navigationBar = BNB();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _crearImagen(),
-          _crearTitulo(),
-          _crearIconos(),
-          _paragraph(),
-          _paragraph(),
-          _paragraph(),
-          _paragraph(),
-          _paragraph(),
-          _paragraph(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _crearImagen(),
+            _crearTitulo(),
+            _crearIconos(),
+            _paragraph(),
+            _paragraph(),
+            _paragraph(),
+            _paragraph(),
+            _paragraph(),
+            _paragraph(),
+          ],
+        ),
       ),
-    ));
+      bottomNavigationBar: navigationBar,
+    );
   }
 
   Widget _crearImagen() {

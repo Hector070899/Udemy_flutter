@@ -20,6 +20,8 @@ class Peliculas {
 }
 
 class Pelicula {
+  //Creacion de variable id unico para evitar conflicto de id compartido con tags
+  String unqiueId;
   double voteAverage;
   double popularity;
   int voteCount;

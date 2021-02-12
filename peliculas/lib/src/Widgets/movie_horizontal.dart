@@ -44,9 +44,14 @@ class MovieHorizontal extends StatelessWidget {
 
   //Necesita la pelicula y el buildcontext
   Widget _tarjeta(BuildContext context, Pelicula pelicula) {
+    //Establece  como id el valor del Id con la concatenacion de poster para
+    //hacerlo unico y pasarselo al tag de Hero
+    pelicula.unqiueId = '${pelicula.id}-poster';
+
     final tarjeta = Container(
       margin: EdgeInsets.only(right: 13.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Hero(
             child: ClipRRect(
@@ -58,7 +63,7 @@ class MovieHorizontal extends StatelessWidget {
                 height: 135.0,
               ),
             ),
-            tag: pelicula.id,
+            tag: pelicula.unqiueId,
           ),
           SizedBox(
             height: 5.0,

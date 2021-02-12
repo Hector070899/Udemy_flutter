@@ -1,16 +1,26 @@
+import 'package:diseno/widgets/bnb.dart';
 import 'package:flutter/material.dart';
 
 class ScrollPage extends StatelessWidget {
+  final navigationBar = BNB();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: PageView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        _pagina1(),
-        _pagina2(),
-      ],
-    ));
+      body: GestureDetector(
+        onHorizontalDragStart: (details) =>
+            Navigator.pushNamed(context, 'basico'),
+        // onHorizontalDragEnd: (details) =>
+        //     Navigator.pushNamed(context, 'botones'),
+        child: PageView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            _pagina1(),
+            _pagina2(),
+          ],
+        ),
+      ),
+      //bottomNavigationBar: navigationBar,
+    );
   }
 
   Widget _pagina1() {
