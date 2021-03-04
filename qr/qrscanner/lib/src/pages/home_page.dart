@@ -11,10 +11,8 @@ import 'package:qrscanner/providers/ui_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    final scanListProvider = Provider.of<ScanListProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -23,7 +21,11 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.delete_forever),
-              onPressed: () => scanListProvider.borrarTodos())
+              onPressed: () {
+                final scanListProvider =
+                    Provider.of<ScanListProvider>(context, listen: false);
+                scanListProvider.borrarTodos();
+              })
         ],
       ),
       body: _HomePageBody(),
