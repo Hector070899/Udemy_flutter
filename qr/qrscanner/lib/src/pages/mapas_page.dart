@@ -8,16 +8,19 @@ class MapasPage extends StatelessWidget {
     // Es necesario escuchar los cambios para redibujar y mostrar info en la UI
     final scanListProvider = Provider.of<ScanListProvider>(context);
     final scans = scanListProvider.scans;
+
     return ListView.builder(
       itemCount: scans.length,
       itemBuilder: (_, i) => Dismissible(
         key: UniqueKey(),
+        onDismissed: (DismissDirection direction) {
+          print('Elian se la come');
+        },
         child: ListTile(
           leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
           title: Text(scans[i].valor),
           subtitle: Text(scans[i].id.toString()),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
-          onTap: () => print(scans[i].id),
         ),
       ),
     );
