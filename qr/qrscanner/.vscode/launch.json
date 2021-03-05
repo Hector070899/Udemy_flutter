@@ -6,24 +6,36 @@
     "configurations": [
 
 
+
+
+
+    // {
+    //     "name": "Launch Chrome",
+    //     "request": "launch",
+    //     "type": "pwa-chrome",
+    //     "url": "http://localhost:8080",
+    //     "webRoot": "${workspaceFolder}"
+    // },
+
+
         {
             "name": "qrscanner",
             "request": "launch",
             "type": "dart",
-            "deviceId": "emulator-5554"
+        //     "deviceId": "emulator-5554"
         },
-        {
-            "name": "Android",
-            "request": "launch",
-            "type": "dart",
-            "deviceId": "7c128f0c"
-        },
+    //     {
+    //         "name": "Android",
+    //         "request": "launch",
+    //         "type": "dart",
+    //         "deviceId": "7c128f0c"
+    //     },
         
-    ],
-    "compounds": [
-        {
-            "name": "All Devices",
-            "configurations": ["Android", "qrscanner"],
-        }
-    ] 
+    // ],
+    // "compounds": [
+    //     {
+    //         "name": "All Devices",
+    //         "configurations": ["Android", "qrscanner"],
+    //     }
+    // ] 
 } 

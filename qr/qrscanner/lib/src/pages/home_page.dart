@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qrscanner/models/scan_model.dart';
-import 'package:qrscanner/providers/db_provider.dart';
 import 'package:qrscanner/providers/scan_list_provider.dart';
 import 'package:qrscanner/widgets/custom_navigatorbar.dart';
 import 'package:qrscanner/widgets/scan_button.dart';
@@ -46,7 +44,6 @@ class _HomePageBody extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
     //Cambiar el currentIndex para mostrar cada pagina
 
-    //TODO: leer base de datos
     //final tempScan = ScanModel(valor: 'http://google.com');
     // DBProvider.db.nuevoScan(tempScan);
     //DBProvider.db.getScanById(7).then((scan) => print(scan.valor));
@@ -61,10 +58,12 @@ class _HomePageBody extends StatelessWidget {
       case 0:
         scanListProvider.cargarScansPorTipo('geo');
         return MapasPage();
+      // return ScanList(tipo: 'geo');
 
       case 1:
         scanListProvider.cargarScansPorTipo('http');
         return DireccionesPage();
+        // return ScanList(tipo: 'http');
 
         break;
       default:

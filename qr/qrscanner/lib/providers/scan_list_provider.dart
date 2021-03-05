@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:qrscanner/models/scan_model.dart';
 import 'package:qrscanner/providers/db_provider.dart';
 

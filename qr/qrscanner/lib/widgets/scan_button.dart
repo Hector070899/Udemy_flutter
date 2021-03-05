@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
 import 'package:provider/provider.dart';
 import 'package:qrscanner/providers/scan_list_provider.dart';
 
@@ -15,7 +15,7 @@ class ScanButton extends StatelessWidget {
         // String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         //     '#3D8BEF', 'Cancelar', false, ScanMode.QR);
 
-        final barcodeScanRes = 'https://fernando-herrera.com';
+        final barcodeScanRes = 'https://fernando-herrera.com/#/home';
         print(barcodeScanRes);
         //Buscar en el arbol de widgets la instancia de ScanListProvider
         final scanListProvider =
