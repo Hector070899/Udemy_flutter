@@ -9,6 +9,7 @@
 
 
 
+
     // {
     //     "name": "Launch Chrome",
     //     "request": "launch",
@@ -22,7 +23,7 @@
             "name": "qrscanner",
             "request": "launch",
             "type": "dart",
-        //     "deviceId": "emulator-5554"
+            "deviceId": "emulator-5554"
         },
     //     {
     //         "name": "Android",
@@ -38,4 +39,6 @@
     //         "configurations": ["Android", "qrscanner"],
     //     }
     // ] 
+
+    ]
 } 

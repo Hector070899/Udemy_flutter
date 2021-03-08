@@ -9,6 +9,6 @@ launchUrl(BuildContext context, ScanModel scan) async {
     //Abri el sitio web
     await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   } else {
-    print('geo');
+    Navigator.pushNamed(context, 'mapa', arguments: scan);
   }
 }

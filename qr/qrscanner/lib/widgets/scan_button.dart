@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:qrscanner/providers/scan_list_provider.dart';
+import 'package:qrscanner/util/util.dart';
 
 class ScanButton extends StatelessWidget {
   const ScanButton({Key key}) : super(key: key);
@@ -15,18 +16,21 @@ class ScanButton extends StatelessWidget {
         // String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         //     '#3D8BEF', 'Cancelar', false, ScanMode.QR);
 
-        final barcodeScanRes = 'https://fernando-herrera.com/#/home';
+        final barcodeScanRes = 'geo:12.140973,-86.288165';
+        // final barcodeScanRes = 'https://fernando-herrera.com';
         print(barcodeScanRes);
+
+        if (barcodeScanRes == '-1') {
+          return;
+        }
         //Buscar en el arbol de widgets la instancia de ScanListProvider
         final scanListProvider =
             Provider.of<ScanListProvider>(context, listen: false);
         scanListProvider.nuevoScan(barcodeScanRes);
-        scanListProvider.nuevoScan('geo: 15.33, 15.66');
-        scanListProvider.nuevoScan(barcodeScanRes);
-        scanListProvider.nuevoScan('geo: 15.33, 15.66');
-        scanListProvider.nuevoScan(barcodeScanRes);
-        scanListProvider.nuevoScan('geo: 15.33, 15.66');
-        print(scanListProvider.tipoSeleccionado);
+        final nuevoScan = await scanListProvider.nuevoScan(barcodeScanRes);
+
+        //Metodo para entrar al valor del scan desde que se pulsa el boton para scanear
+        launchUrl(context, nuevoScan);
       },
     );
   }
