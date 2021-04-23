@@ -13,7 +13,7 @@ class LoginBloc with Validators {
   final _passwordController = BehaviorSubject<String>();
 
   //Recuperar los datos del stream
-  //Especificar que salen streams de tipo de strings
+  //Especificar que salen streams de tipo strings
   //Uso de stream transformers para validacion de datos
   Stream<String> get emailStream =>
       _emailController.stream.transform(validarEmail);

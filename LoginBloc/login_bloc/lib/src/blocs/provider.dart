@@ -41,6 +41,3 @@ class Provider extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<Provider>().loginBloc;
   }
 }
-
-// Stream<bool> get formValidStream =>
-//        Rx.combineLatest2(emailStream, passwStream, (e, p) => true);
