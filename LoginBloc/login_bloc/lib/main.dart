@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/blocs/provider.dart';
 import 'package:login_bloc/src/pages/home_page.dart';
@@ -7,8 +6,7 @@ import 'package:login_bloc/src/pages/producto_page.dart';
 import 'package:login_bloc/src/pages/registro_page.dart';
 import 'package:login_bloc/src/preferencias_usuario/preferencias_usuario.dart';
 
-Future<void> main() async {
-  await Firebase.initializeApp();
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Implementacion de Prefencias de usuario
   final prefs = new PreferenciasUsuario();

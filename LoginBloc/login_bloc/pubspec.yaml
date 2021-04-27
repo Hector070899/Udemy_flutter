@@ -27,8 +27,6 @@ dependencies:
   http:
   image_picker: 
   shared_preferences:
-  firebase_auth:
-  firebase_core:
   
 
 
