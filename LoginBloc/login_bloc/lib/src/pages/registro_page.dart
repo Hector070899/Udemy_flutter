@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/blocs/provider.dart';
-import 'package:login_bloc/src/utils/utils.dart' as utils;
 import 'package:login_bloc/src/providers/usuario_provider.dart';
+import 'package:login_bloc/src/utils/utils.dart' as utils;
 
-class LoginPage extends StatelessWidget {
+class RegistroPage extends StatelessWidget {
   final usuarioProvider = UsuarioProvider();
 
   @override
@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Ingreso',
+                  'Registro',
                   style: TextStyle(fontSize: 20.0),
                 ),
                 SizedBox(height: 60.0),
@@ -58,9 +58,8 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           TextButton(
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, 'registro'),
-              child: Text('Registrar nuevo usuario')),
+              onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
+              child: Text('Ya tenes un usuario?')),
           SizedBox(height: 100.0)
         ],
       ),
@@ -78,7 +77,7 @@ class LoginPage extends StatelessWidget {
             decoration: InputDecoration(
                 icon: Icon(
                   Icons.alternate_email,
-                  color: Colors.deepPurple,
+                  color: Colors.blue[900],
                 ),
                 hintText: 'ejemplo@correo.com',
                 labelText: 'Correo electronico',
@@ -104,7 +103,7 @@ class LoginPage extends StatelessWidget {
             decoration: InputDecoration(
               icon: Icon(
                 Icons.lock_outline_sharp,
-                color: Colors.deepPurple,
+                color: Colors.blue[900],
               ),
               labelText: 'Contrasena',
               //snapshot.data contiene el valor del stream
@@ -127,34 +126,32 @@ class LoginPage extends StatelessWidget {
         return ElevatedButton(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 70.0, vertical: 20.0),
-            child: Text('Ingresar'),
+            child: Text('Crear Cuenta'),
           ),
           style: ElevatedButton.styleFrom(
             elevation: 0.0,
             onPrimary: Colors.white,
-            primary: Colors.deepPurple,
+            primary: Colors.blue[900],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
             ),
           ),
           //Si el snapshot tiene datos entonces llama el callback
           //Si no tiene informacion entonces regresa null
-          onPressed: snapshot.hasData ? () => _login(bloc, context) : null,
+          onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
         );
       },
     );
   }
 
-//Metodo para obtener el ultimo valor ingresado a los Streams
-  _login(LoginBloc bloc, BuildContext context) async {
-    // print('Email: ${bloc.email}');
-    // print('Password: ${bloc.password}');
-    // Navigator.pushReplacementNamed(context, 'home');
-
-    Map info = await usuarioProvider.login(bloc.email, bloc.password);
+  _register(LoginBloc bloc, BuildContext context) async {
+    final info = await usuarioProvider.login(bloc.email, bloc.password);
     info['ok']
         ? Navigator.pushReplacementNamed(context, 'home')
         : utils.mostrarAlerta(context, info['message']);
+    // print('Email: ${bloc.email}');
+    // print('Password: ${bloc.password}');
+    // Navigator.pushReplacementNamed(context, 'home');
   }
 
   Widget _crearFondo(context) {
@@ -165,8 +162,8 @@ class LoginPage extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: <Color>[
-        Color.fromRGBO(63, 63, 156, 1.0),
-        Color.fromRGBO(90, 70, 178, 1.0)
+        Color.fromRGBO(45, 63, 156, 1.0),
+        Color.fromRGBO(45, 70, 178, 1.0)
       ])),
     );
 
@@ -211,4 +208,6 @@ class LoginPage extends StatelessWidget {
       ],
     );
   }
+
+//Metodo para obtener el ultimo valor ingresado a los Streams
 }

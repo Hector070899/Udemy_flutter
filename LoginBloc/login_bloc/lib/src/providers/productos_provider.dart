@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:login_bloc/src/models/producto_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:login_bloc/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 
 class ProductosProvider {
   //Url del db de firebase
   final _url = 'https://flutter-varios-8283e-default-rtdb.firebaseio.com';
+  final _prefs = PreferenciasUsuario();
 
   //Metodo que inserta los productos en firebase
   Future<bool> crearProducto(ProductoModel producto) async {
@@ -20,6 +22,8 @@ class ProductosProvider {
     print(decodedData);
 
     return true;
+
+    // ?auth=${_prefs.token}
   }
 
   //Funcion que carga los productos desde firebase
@@ -33,9 +37,10 @@ class ProductosProvider {
 
     //Validacion para verificar que la resp no este vacio
     if (decodedData == null) return [];
-
+    print("Este es el test $decodedData");
     //For each que recorre decodedData y regresa cada Map con con el id y el producto
     decodedData.forEach((id, producto) {
+      print(producto);
       //Lista temporal que va a tener los productos barridos en el foreach
       final prodTemp = ProductoModel.fromJson(producto);
       //Como el id no viene en el producto, se iguala el id que viene como parte del mapa con
