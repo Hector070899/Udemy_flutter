@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "941767538250",
+    "firebase_url": "https://flutter-varios-8283e-default-rtdb.firebaseio.com",
+    "project_id": "flutter-varios-8283e",
+    "storage_bucket": "flutter-varios-8283e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941767538250:android:ecda78755fae1bd19358b3",
+        "android_client_info": {
+          "package_name": "com.example.firebase_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941767538250-37egd656j1snm5tgnaa53fkvem8gil3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaNSkC33Lje57RBh3G_fzXA1d9ps2xEao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941767538250-37egd656j1snm5tgnaa53fkvem8gil3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
