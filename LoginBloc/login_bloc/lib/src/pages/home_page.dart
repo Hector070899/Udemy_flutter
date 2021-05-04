@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:login_bloc/src/blocs/provider.dart';
 import 'package:login_bloc/src/models/producto_model.dart';
-import 'package:login_bloc/src/providers/productos_provider.dart';
 
 class HomePage extends StatelessWidget {
-  final productosProvider = ProductosProvider();
-
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of(context);
+    final productosBloc = Provider.productoBloc(context);
+    productosBloc.cargarProductos();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
         centerTitle: true,
         //un comentario
       ),
-      body: _crearLista(),
+      body: _crearLista(productosBloc),
       floatingActionButton: _crearBoton(context),
     );
   }
 
-  Widget _crearLista() {
-    return FutureBuilder(
-      future: productosProvider.cargarProductos(),
+  Widget _crearLista(ProductosBloc productosBloc) {
+    return StreamBuilder(
+      stream: productosBloc.productosStream,
       builder:
-          //Especificar la lista de ProductoModel que contiene el snapshot
           (BuildContext context, AsyncSnapshot<List<ProductoModel>> snapshot) {
         if (snapshot.hasData) {
           final totalprod = snapshot.data;
           return ListView.builder(
             itemCount: totalprod.length,
-            itemBuilder: (context, i) => _crearItem(context, totalprod[i]),
+            itemBuilder: (context, i) =>
+                _crearItem(context, totalprod[i], productosBloc),
           );
         } else {
           return Center(child: CircularProgressIndicator());
@@ -47,15 +46,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _crearItem(BuildContext context, ProductoModel producto) {
+  Widget _crearItem(BuildContext context, ProductoModel producto,
+      ProductosBloc productosBloc) {
     return Dismissible(
         key: UniqueKey(),
         background: Container(
           color: Colors.red,
         ),
-        onDismissed: (direccion) {
-          productosProvider.borrarProductos(producto.id);
-        },
+        onDismissed: (direccion) => productosBloc.borrarProductos(producto.id),
         child: Card(
           child: Column(
             children: <Widget>[
@@ -69,7 +67,8 @@ class HomePage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
               ListTile(
-                title: Text('${producto.titulo} - ${producto.valor}'),
+                title: Text(
+                    'Nombre: ${producto.titulo} - Precio: ${producto.valor}'),
                 subtitle: Text(producto.id),
                 onTap: () => Navigator.pushNamed(context, 'producto',
                     arguments: producto),

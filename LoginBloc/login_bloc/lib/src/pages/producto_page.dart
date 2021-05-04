@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:login_bloc/src/blocs/provider.dart';
 import 'package:login_bloc/src/models/producto_model.dart';
-import 'package:login_bloc/src/providers/productos_provider.dart';
 import 'package:login_bloc/src/utils/utils.dart' as utils;
 
 class ProductoPage extends StatefulWidget {
@@ -16,14 +16,19 @@ class _ProductoPageState extends State<ProductoPage> {
   //Flutter de esta manera reconoce que es un formulario y tiene las acciones propias para validarlo
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  ProductosBloc productosBloc;
   ProductoModel producto = ProductoModel();
   bool _guardando = false;
-  final productoProvider = ProductosProvider();
+
   //File que tendra el path de la foto
   File foto;
 
   @override
   Widget build(BuildContext context) {
+    //Al ser una propiedad ya inicializada tengo acceso a ellas en todos los
+    //lugares de la aplicacion
+    productosBloc = Provider.productoBloc(context);
+
     //Manera en que este page recibe el argumento que se envia a traves de pushNamed
     final ProductoModel prodData = ModalRoute.of(context).settings.arguments;
     if (prodData != null) {
@@ -138,19 +143,19 @@ class _ProductoPageState extends State<ProductoPage> {
 
     if (foto != null) {
       //La creacion de un nuevo atributo en firebase
-      producto.fotoURl = await productoProvider.subirImagen(foto);
+      producto.fotoURl = await productosBloc.subirFoto(foto);
 
       CircularProgressIndicator();
     }
 
     if (producto.id == null) {
-      productoProvider.crearProducto(producto);
+      productosBloc.agregarProductos(producto);
     } else {
-      productoProvider.editarProducto(producto);
+      productosBloc.editarProductos(producto);
     }
     mostrarSnackBar('Registro guardado');
 
-    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, 'home');
   }
 
   void mostrarSnackBar(String mensaje) {

@@ -44,7 +44,6 @@ class ProductosProvider {
 
       productos.add(prodTemp);
     });
-    // print(productos);
 
     return productos;
   }
