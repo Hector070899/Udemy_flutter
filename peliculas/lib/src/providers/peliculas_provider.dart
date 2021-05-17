@@ -13,7 +13,7 @@ class PeliculasProvider {
   bool _cargando = false;
 
   //manejo del stream, maneja un listado de peliculas
-  List<Pelicula> _populares = List();
+  List<Pelicula> _populares = [];
   //Se indica que informacion va a fluir dentro del stream, en este caso una lista de peliculas
   final _popularesStreamController =
       StreamController<List<Pelicula>>.broadcast();

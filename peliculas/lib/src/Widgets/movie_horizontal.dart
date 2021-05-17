@@ -28,7 +28,7 @@ class MovieHorizontal extends StatelessWidget {
 
     return Container(
       //%20 del tamano de la pantalla
-      height: _screenSize.height * 0.2,
+      height: _screenSize.height * 0.25,
       //Widget que sirve para ver paginas flotantes
       child: PageView.builder(
         pageSnapping: false,
@@ -60,7 +60,7 @@ class MovieHorizontal extends StatelessWidget {
                 placeholder: AssetImage('assets/img/loading.gif'),
                 image: NetworkImage(pelicula.getPosterImg()),
                 fit: BoxFit.cover,
-                height: 135.0,
+                height: 200.0,
               ),
             ),
             tag: pelicula.unqiueId,
@@ -68,10 +68,12 @@ class MovieHorizontal extends StatelessWidget {
           SizedBox(
             height: 5.0,
           ),
-          Text(
-            pelicula.title,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.caption,
+          Center(
+            child: Text(
+              pelicula.title,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.caption,
+            ),
           ),
         ],
       ),

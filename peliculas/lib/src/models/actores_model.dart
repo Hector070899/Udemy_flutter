@@ -1,7 +1,7 @@
 //Instancia de Actor que mapea toda la lista de actores que recibe del Json
 //
 class Cast {
-  List<Actor> actores = List();
+  List<Actor> actores = [];
 
   //Constructor que recibe la lista del cast y recorre la lista de actores
   Cast.fromJsonList(List<dynamic> jsonList) {

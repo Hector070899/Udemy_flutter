@@ -3,7 +3,7 @@
 class Peliculas {
   //lista de tipo pelicula que va a contener todas las peliculas mapeadas
   //por el for
-  List<Pelicula> items = List();
+  List<Pelicula> items = [];
   Peliculas(this.items);
   //Recibe el mapa de todas las peliculas y las transforma a items.
   //Cada item es una pelicula
