@@ -17,8 +17,9 @@ class Tab2Page extends StatelessWidget {
             _ListaCategorias(),
             //Utiliza el mismo widget que el tab1, lo unico que cambia es que recibe la categoria seleccionada
             Expanded(
-                child: ListaNoticias(
-                    newsService.getArticulosCategoriaSeleccionada)),
+              child:
+                  ListaNoticias(newsService.getArticulosCategoriaSeleccionada),
+            ),
           ],
         ),
       ),

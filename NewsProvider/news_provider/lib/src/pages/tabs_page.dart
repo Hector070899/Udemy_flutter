@@ -64,6 +64,7 @@ class _NavegacionModel with ChangeNotifier {
   //Va a cambiar su valor conforme sean seleccionados los tabs
   int _paginaActual = 0;
 
+  //Es privado porque no es necesario cambiar el valor del objeto, solo se usa como referencia
   PageController _pageController = PageController(initialPage: 0);
 
   //Getter que expone el valor de pageController para que sea visible en cualquier lugar

@@ -45,8 +45,9 @@ class NewsService with ChangeNotifier {
   }
 
   //Getter que recibe una lista de informacion de la categoria seleccionada
-  List<Article> get getArticulosCategoriaSeleccionada =>
-      categoryArticles[selectedCategory];
+  List<Article> get getArticulosCategoriaSeleccionada {
+    return categoryArticles[selectedCategory];
+  }
 
   getTopHeadlines() async {
     final url = '$_UrlNews/top-headlines?apiKey=$_APIKEY&country=ca';
