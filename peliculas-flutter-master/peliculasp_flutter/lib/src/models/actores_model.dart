@@ -1,22 +1,15 @@
 class Cast {
+  List<Actor> actores = [];
 
-  List<Actor> actores = new List();
+  Cast.fromJsonList(List<dynamic> jsonList) {
+    if (jsonList == null) return;
 
-
-  Cast.fromJsonList( List<dynamic> jsonList  ){
-
-    if ( jsonList == null ) return;
-
-    jsonList.forEach( (item) {
+    jsonList.forEach((item) {
       final actor = Actor.fromJsonMap(item);
       actores.add(actor);
     });
   }
-
 }
-
-
-
 
 class Actor {
   int castId;
@@ -39,27 +32,22 @@ class Actor {
     this.profilePath,
   });
 
-  Actor.fromJsonMap( Map<String, dynamic> json ) {
-
-    castId      = json['cast_id'];
-    character   = json['character'];
-    creditId    = json['credit_id'];
-    gender      = json['gender'];
-    id          = json['id'];
-    name        = json['name'];
-    order       = json['order'];
+  Actor.fromJsonMap(Map<String, dynamic> json) {
+    castId = json['cast_id'];
+    character = json['character'];
+    creditId = json['credit_id'];
+    gender = json['gender'];
+    id = json['id'];
+    name = json['name'];
+    order = json['order'];
     profilePath = json['profile_path'];
-
   }
 
-   getFoto() {
-
-    if ( profilePath == null ) {
+  getFoto() {
+    if (profilePath == null) {
       return 'http://forum.spaceengine.org/styles/se/theme/images/no_avatar.jpg';
     } else {
       return 'https://image.tmdb.org/t/p/w500/$profilePath';
     }
-
   }
-
 }
